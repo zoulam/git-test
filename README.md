@@ -97,6 +97,8 @@ git push -u origin main #
 
 `branch` : 分支，简单理解成脱离主干的内容
 
+![branch](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210201204823550.png)
+
 ```bash
 git branch# 列出所有本地分支
 
