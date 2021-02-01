@@ -153,6 +153,10 @@ git branch -dr [remote/branch]
 
 ​			[github提供的.gitignore文档](https://docs.github.com/en/github/using-git/ignoring-files)
 
+`HEAD`：相当于是鼠标的点击后被标记的含义（我看别人翻译为： **游标**），如：使用 `checkout`改变 `HEAD`的位置。
+
+​					注：git内的 `HEAD`是唯一的：n个分支下也只有一个，即你切换了分支游标也走了。
+
 ```bash
 # 解决.gitignore忽略文件误上传的问题
 # 删除远程仓库的所有的node_modules文件
@@ -332,7 +336,7 @@ console.log("hello, little man!")
 
 ## config
 
->  在上面**（初始本地配置）**中已经演示过如何设置邮箱和用户名了，下面演示常见命令。
+>  在上面**(初始本地配置)**中已经演示过如何设置邮箱和用户名了，下面演示常见命令。
 
 ```bash
 git config --list # 查看配置列表
@@ -341,7 +345,7 @@ git config -e # 如果想要修改旧添加 -e参数
 git config --global -e # 修改全局参数
 ```
 
-## checkout
+## checkout（查看源码的神器）
 
 >  通常被翻译为签出，可以形象的理解为从盒子里取出卡片的动作。
 
@@ -490,15 +494,25 @@ git remote branch # 查看远程（仓库）分支
 
 与 `merge`合并分支的方式不同，rebase合并的方式会删除被合并 `branch`的历史
 
-​	可视化操作命令是 `Rebase  branch1 onto branch2`
+​	可视化操作命令是
+
+​		1、 `Rebase branch1 onto branch2`
+
+​		2、鼠标 **右键** 点击最新的信息 `fast forward`让 `HEAD`移动到最新
 
 ```bash
-git rebase
+# 命令行操作不太会
 ```
+
+### 2、pull rebase
+
+pull 命令也可以使用变基
 
 ### 2、commit message
 
-使用场景：糊涂的程序员fix一个bug，一次`commit`没有完成，提交了10次 `commit`才完成，但是这10次`commit`仅仅做了这一件事，那么我们就可以将这10次`commit`合并为1次`commit`。
+​		使用场景：糊涂的程序员fix一个bug，一次`commit`没有完成，提交了10次 `commit`才完成，但是这10次`commit`仅仅做了这一件事，那么我们就可以将这10次`commit`合并为1次`commit`。
+
+​		为什么说糊涂：脑子正常点也不会提交那么多次，只犯了一次 commit就可以选用amend啦。
 
 ```bash
 git rebase -i HEAD~9
