@@ -273,16 +273,30 @@ git push -f # 确定本地没有错误，慎用，坚定的（force）推送上�
 
 #### 方式2
 
->  同时修改但是无冲突。
+>  同时修改但是无代码层面的冲突（如添加了两个不同的函数），让git自动解决。
 
 ```bash
-git pull 
+git pull # 会自动合并代码
 git push
 ```
 
 #### 方式3
 
->  手动合并冲突
+>  手动合并冲突，即出现了修改同一处代码的问题。
+>
+> ​	一般 vscode的（`Git History`）插件会出现下面几个选项
+>
+> ​		1、保留a
+>
+> ​		2、保留b
+>
+> ​		3、让a、b同时存在
+>
+> ![conflict](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210201202737114.png)
+
+```bash
+git pull # 失败
+```
 
 ```javascript
 // user1
@@ -295,8 +309,19 @@ console.log("hello, little man!")
 ```
 
 ```javascript
-// merge
-console.log("hey, little man!")
+// 此处选择让ab同时存在
+console.log("hey, man!")
+console.log("hello, little man!")
+```
+
+![example](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210201203504790.png)
+
+过程总结：
+
+```bash
+1、修改冲突文件
+2、发起merge commit
+3、push
 ```
 
 ## 方式4
@@ -474,6 +499,8 @@ git rebase -i HEAD~9
 
 下面是两个操作的示意图。
 
+# 常见操作
+
 ## amend（本地）
 
 >  `amend`中文释义：修改；改善。
@@ -487,8 +514,11 @@ git rebase -i HEAD~9
 > ​	step2：
 >
 > ```bash
-> git commit --amend -m "<新的提交信息>"
+> git commit --amend -m "<新的提交信息>" # 信息可以不填
+> git commit --amend
 > ```
+
+# 撤销三连
 
 ## undo&redo(本地)
 
