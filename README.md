@@ -452,7 +452,7 @@ git config --global -e # 修改全局参数
 
 >  通常被翻译为签出，可以形象的理解为从盒子里取出卡片的动作，移动了游标，使用变基可以回到主分支。
 >
->  ​	![checkout](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210201212913704.png)
+>  ​	<img src="https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210201212913704.png" alt="checkout" style="zoom: 67%;" />
 
 ```bash
 git checkout <branch name> # 切换分支
@@ -568,7 +568,7 @@ git show # 显示最后一次的文件改变的具体内容
 
 > 下图是截取自 `vue-next`项目的 `git shortlog -sn` 日志
 
-![vue next commit log sort by num](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210131213745573.png)
+<img src="https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210131213745573.png" alt="vue next commit log sort by num" style="zoom:67%;" />
 
 ## **remote**
 
