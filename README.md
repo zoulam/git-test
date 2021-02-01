@@ -1,3 +1,13 @@
+
+
+[TOC]
+
+
+
+# 推荐文章
+
+[git进阶指南](https://gb.yekai.net/)
+
 # 什么是git
 
 git是一个分布式版本控制（ **distributed version-control**）系统。 
@@ -8,7 +18,13 @@ git是一个分布式版本控制（ **distributed version-control**）系统。
 
 更多git信息：[git的wiki](https://zh.wikipedia.org/wiki/Git)  [git官方文档](https://git-scm.com/doc)
 
-# git使用
+# 在此之前
+
+> 1、 注册[GitHub](http://github.com/)账号
+>
+> 2、安装[git客户端](https://git-scm.com/)，并更新到最新版本
+
+# git使用（入门）
 
 ## ①初始化本地配置
 1、设置本地邮箱和账户名字(如果是你自己的电脑可以写入参数 `--gobal`)
@@ -19,10 +35,15 @@ git config user.email "<email>"
 
 2、生成ssh(sshkey生成器是git客户端自带的)
 
+>  生成的key会在ssh传输中进行校验，同时可以确保你拥有自主 `push`远程仓库的权限。
+
 ①`in bash terminal`
 
 ```bash {.line-numbers}
 ssh-keygen -t rsa -C "<your eamil>"#这个步骤生成的sshkey路径会显示在终端，注意查看
+
+# example
+ssh-keygen -t rsa -C "zoulam19981205@163.com"
 ```
 
 ②将生成的sshkey粘贴到GitHub账户上（**此步是保证你的电脑自由使用ssh对该账户的仓库操作**）
@@ -57,7 +78,7 @@ git remote add origin <url>
 git push -u origin main #
 ```
 
-# GitHub
+# 什么是GitHub
 
 >  GitHub提供免费的私有仓库托管服务，是世界上毫无争议被认为是**最好**开源网站，在2018年6月份被微软收购，题外话就是：npm也被微软收购 [参见营销号量子位的文章](https://www.qbitai.com/2020/03/12395.html)
 
@@ -133,6 +154,26 @@ git branch -dr [remote/branch]
 
 `tag` : 标签，与分支类似
 
+```bash
+git tag # 列出所有tag
+
+git tag [tag] # 新建一个tag在当前commit
+
+git tag [tag] [commit] # 新建一个tag在指定commit
+
+git tag -d [tag] # 删除本地tag
+
+git push origin :refs/tags/[tagName]# 删除远程tag
+
+git show [tag]# 查看tag信息
+
+git push [remote] [tag]# 提交指定tag
+
+git push [remote] --tags# 提交所有tag
+
+git checkout -b [branch] [tag]# 新建一个分支，指向某个tag
+```
+
 > etc: 在`jQuery`中
 >
 > ​	**branch** 用于存放大版本的 `stable`即稳定的大版本代码。
@@ -169,7 +210,7 @@ git rm -r -f --cached **/node_modules/ # -r就是remote的意思-f是force的意
 
 `hash`：每一次commit都会生成独一无二的hash用于某些操作，使用 `git log`（按下`q`退出**log**）看查看到`hash`，查看到指定 `hash`可以针对性的对某次commit做修改
 
-# 常见命令
+# **常见命令**
 
 ## 建议
 
@@ -191,6 +232,8 @@ git rm -r -f --cached **/node_modules/ # -r就是remote的意思-f是force的意
 
 `-b` branch
 
+`--abort`
+
 ## help
 
 ```bash
@@ -205,6 +248,7 @@ git diff --help # 使用默认浏览器打开diff的帮助文档
 git add filename1 filename2 ……#手动指定文件，可以是一个也可以是多个
 git add . # 提交所有已更改文件
 git add *.c # 提交所有 .c结尾的文件名文件
+git add -p # 分批次提交
 ```
 
 ## commit
@@ -230,7 +274,7 @@ git commit -m "<commit message>"
 git commit # 输入多行的commit信息
 ```
 
-### 值得一提的是
+### 值得一提
 
 > ​	commit信息是可以触发GitHub某些行为的， **如：** 创建跳转到指定 `issue`的`commit`信息。
 >
@@ -238,22 +282,25 @@ git commit # 输入多行的commit信息
 
 ### 概念理解
 
-`-m` 参数可以理解为是标题（summary）
+>  命令相对于图形化客户端的含义。
 
-不加 `-m`进入的是（description）
+`-m` 参数可以理解为是标题（`summary`）
+
+不加 `-m`进入的是（`description`）
 
 ## clone
 
 >  因为国内网络的限制`git clone`一个仓库需要十分漫长等待的时间。
 >
-> ​	常见的解决方式如下：
+> 常见的解决方式如下：
 >
 > ​			1、通过镜像站拷贝（`gitee`）拷贝镜像站点，然后从 `gitee`拉取。
 >
 > ​			2、一劳永逸：翻墙
 
 ```bash
-git clone url <new filename># clone 远程仓库到本地,可以指定文件名（通常可省略）
+git clone url <new filename> # clone 远程仓库到本地,可以指定文件名（通常可省略）
+git clone -b [branchName] url # clone 指定分支
 ```
 
 ## **pull&push**
@@ -412,24 +459,6 @@ git blame <filename> # 列表展示指定文件的变化
 - aa
 ```
 
-## reset（本地）
-
->  reset的中文意思是重置，通常被理解为是 `git add`的可逆操作。
-
-```bash
-git reset HEAD . # 撤销全部 add
-
-git reset [file]# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
-
-git reset --hard# 重置暂存区与工作区，与上一次commit保持一致
-
-git reset [commit]# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
-
-git reset --hard [commit]# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
-
-git reset --keep [commit]# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
-```
-
 ## mv & rm
 
 >  `git mv` 与linux下的 `mv`使用方式一致，即可以用于**移动文件**也可以**重命名**文件，但是会多一个移入暂存区（`git add`）的效果。
@@ -448,8 +477,14 @@ git reset --keep [commit]# 重置当前HEAD为指定commit，但保持暂存区�
 ```bash
 # 首先进入main分支（如果已经在了就不用切换）
 git checkout main
+
 # 将test分支合并到main分支
 git merge test
+
+# 中断merge
+git merge --abort
+
+git merge --ff-only main #将当前分支合并到main分支并快速移动main分支到最新
 ```
 
 ## log&reflog
@@ -465,9 +500,14 @@ git reflog # 查看git操作日志（用于 redo undo）
 
 ```bash
 gitk # 打开可视化的log查看工具
---stat # 查看文件变化
--S <keyword># 搜索关键词
+git log -S <keyword># 搜索关键词
 git shortlog -sn# sort num,查看提交人并以提交次数排序
+git log --name-status #每次修改的文件列表, 显示状态
+git log --name-only #每次修改的文件列表
+git log --stat # 每次修改的文件列表, 及文件修改的统计
+git whatchanged #每次修改的文件列表
+git whatchanged --stat  #每次修改的文件列表, 及文件修改的统计
+git show # 显示最后一次的文件改变的具体内容
 ```
 
 > 下图是截取自 `vue-next`项目的 `git shortlog -sn` 日志
@@ -482,15 +522,15 @@ git shortlog -sn# sort num,查看提交人并以提交次数排序
 git remote branch # 查看远程（仓库）分支
 ```
 
-# 变基
-
-## rebase
+# 变基（rebase）
 
 >  万恶的变基，re变base基础，变更根基。
 >
 >  ​	好处：**commit history**十分干净。
 >
 >  ​	坏处：失去branch信息，还容易被人撕逼，所以需要依据团队标准使用。
+>
+>  ​			我们需要选学会 `git rebase --abort`中断rebase
 
 ### 1、branch
 
@@ -504,23 +544,73 @@ git remote branch # 查看远程（仓库）分支
 
 ```bash
 # 命令行操作不太会
+git checkout <分支名称>
+git rebase --ff-only main # 变基到main并快速移动main分支到最新
 ```
 
 ### 2、pull rebase
 
 pull 命令也可以使用变基
 
-### 2、commit message
+### 2、merge commit message
+
+>  合并信息的限制：本次示例中的`git log`只有**5**条，所以合并的条数最大是**\(5-1\)**条即**4**条
 
 ​		使用场景：糊涂的程序员fix一个bug，一次`commit`没有完成，提交了10次 `commit`才完成，但是这10次`commit`仅仅做了这一件事，那么我们就可以将这10次`commit`合并为1次`commit`。
 
 ​		为什么说糊涂：脑子正常点也不会提交那么多次，只犯了一次 commit就可以选用amend啦。
 
+<img src="https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20200717181219239.png" alt="before rebase" style="zoom: 67%;" />
+
+<img src="https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20200717181556757.png" alt="after rebase" style="zoom:67%;" />
+
+#### 方法1
+
 ```bash
-git rebase -i HEAD~9
+# 合并最近四次commit信息,进入vim编辑器
+$ git rebase -i HEAD~4 # 合并四条commit信息
 ```
 
-下面是两个操作的示意图。
+```bash
+pick 430a02b 第二次提交
+s b70547d 第三次提交
+s 00df675 第四次提交
+s f70b17d 第五次提交
+```
+
+#### 方法2
+
+```bash
+# 进入vim编辑器,编辑commit id 内的所有子commit信息(不包含他本身)
+$ git rebase -i [commit id]
+```
+
+#### 其他
+
+> 进入vim后的文件翻译，即你修改头之外还有做其他事情。
+
+```bash
+# 命令:
+# p, pick <提交> = 使用提交
+# r, reword <提交> = 使用提交，但修改提交说明
+# e, edit <提交> = 使用提交，进入 shell 以便进行提交修补
+# s, squash <提交> = 使用提交，但融合到前一个提交
+# f, fixup <提交> = 类似于 "squash"，但丢弃提交说明日志
+# x, exec <命令> = 使用 shell 运行命令（此行剩余部分）
+# b, break = 在此处停止（使用 'git rebase --continue' 继续变基）
+# d, drop <提交> = 删除提交
+# l, label <label> = 为当前 HEAD 打上标记
+# t, reset <label> = 重置 HEAD 到该标记
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+```
+
+```bash
+# （重新回到）到rebase文件编辑
+$ git rebase --edit-todo
+
+# 保存rebase文件
+$ git rebase --continue
+```
 
 # 常见操作
 
@@ -545,23 +635,39 @@ git rebase -i HEAD~9
 
 ## undo&redo(本地)
 
-```
-
-```
-
-
+>  只会gui操作，命令行操作自己查
 
 ## revert
 
+>  生成新的commit信息完成前面的 `UNDO`，不会对过去的提交历史发生冲突
+
 ```bash
 git revert <旧的提交hash>
+```
+
+## reset（本地）
+
+>  reset的中文意思是重置，通常被理解为是 `git add`的可逆操作。
+
+```bash
+git reset HEAD . # 撤销全部 git add
+
+git reset [file]# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
+
+git reset --hard# 重置暂存区与工作区，与上一次commit保持一致
+
+git reset [commit]# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
+
+git reset --hard [commit]# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
+
+git reset --keep [commit]# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
 ```
 
 # 暂存内容
 
 ## stash
 
->  暂存，与add命令移入暂存区不同，他移入的是另一个区域 stash。
+>  暂存，与add命令移入暂存区不同，他移入的是另一个区域 stash（**并且永久存在**），需要手动删除，他在合并等（**可能发生冲突**）的时候也会为你生成stash。
 >
 >  ​	使用场景：
 >
@@ -572,6 +678,9 @@ git revert <旧的提交hash>
 ```bash
 git stash save "<输入暂存的信息>"
 git stash pop # 取出暂存，并删除暂存信息
+
+git stash list # 展示暂存列表
+git stash drop stash@{0} #删除列表1
 ```
 
 # 可视化工具
@@ -582,15 +691,108 @@ git stash pop # 取出暂存，并删除暂存信息
 >
 > ​	2、软件的好处在于简单易用，但是同时带来了性能问题
 >
-> 个人推荐：简单的命令可以在命令行完成，查看 `diff`，查看分支的情况等使用可视化工具更加舒服。
+> 个人推荐：简单的命令可以在命令行完成，查看 `diff`，查看、切换分支等需要hash的可以在可视化工具下完成。
 
 [sourcetree](https://www.sourcetreeapp.com/)
 
-[GitKraken](https://www.gitkraken.com/)
+[GitKraken](https://www.gitkraken.com/) **WIP**是 work in progress的缩写
 
-[tortoisegit](https://tortoisegit.org/) **WIP**是 work in progress的缩写
+[smartgit](https://www.syntevo.com/smartgit/)
+
+[tortoisegit](https://tortoisegit.org/)
 
 还有git自带的gui客户端（性能最好）
 
 `visual studio code`的命令和插件（如果你是vscode用户，那么这种方式也是十分推荐的）
 
+# 常见问题
+
+## 1）需要每一次的`git push`都需要输入账号密码
+
+```bash
+#远程仓库提交方式版本
+$ git remote -v 
+
+ #移除原始提交方式
+$ git remote rm origin
+
+#改用ssh
+$ git remote add origin [ 仓库地址]
+
+#设置跟随master，并提交到远程仓库
+$ git push -u origin master
+```
+
+## 2）`release`|`merge`进程未中断
+
+```bash
+#中断rebase进程
+$ git rebase --abort
+#中断merge进程
+$ git merge --abort
+```
+
+## 3）`git push`出现rejected错误
+
+> 该错误是拒绝本地提交到远程仓库，原因是远程仓库的内容和本地仓库的内容冲突，据说是**非法篡改**
+
+**解决方式①**
+
+```bash
+# 确定本地的代码没有问题，强制push
+$ git push -f
+```
+
+**解决方式②**
+
+```bash
+# 确定远程仓库的代码没问题，拉取最新的内容再重写本地代码后git push
+# 这两个命令合起来等效git pull
+$ git fetch
+
+$ git merge
+```
+
+```bash
+# 获取远程仓库的更新
+$ git pull
+```
+
+## 4）关于中文乱码问题
+
+```bash
+$ git config --global core.quotepath false          # 显示 status 编码
+$ git config --global gui.encoding utf-8            # 图形界面编码
+$ git config --global i18n.commit.encoding utf-8    # 提交信息编码
+$ git config --global i18n.logoutputencoding utf-8    # 输出 log 编码
+$ export LESSCHARSET=utf-8
+# 最后一条命令是因为 git log 默认使用 less 分页，所以需要 bash 对 less 命令进行 utf-8 编码
+```
+
+## 5）`ls`打印中文目录是乱码
+
+进入`Git\mingw64\share\git\completion`目录下打开`git-completion.bash`文件在末尾添上这么一行信息
+
+```bash
+alias ls="ls --show-control-chars --color"
+```
+
+## 6）如何生成在GitHub可以使用的目录
+
+知乎问题：[如何实现Github markdown 目录/页内跳转？](https://www.zhihu.com/question/58630229)
+
+## 7）如何更新git客户端
+
+```bash
+git --version
+git update # 2.17.1版本的更新命令
+git update-git-for-windows #  2.17.1版本之后的更新git的Windows命令
+```
+
+>  **注：**如果上述命令不存在，去git官网下载最新本覆盖安装。
+
+## 8）Submodule 和 Subtree区别和使用
+
+[Git 進階應用 Submodule 與 Subtree，使用它們來拆分專案](https://blog.puckwang.com/post/2020/git-submodule-vs-subtree/)
+
+[Subtree 与 Submodule](https://gb.yekai.net/concepts/subtree-vs-submodule)
