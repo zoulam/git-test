@@ -481,6 +481,10 @@ git remote branch # 查看远程（仓库）分支
 ## rebase
 
 >  万恶的变基，re变base基础，变更根基。
+>
+>  ​	好处：**commit history**十分干净。
+>
+>  ​	坏处：失去branch信息，还容易被人撕逼，所以需要依据团队标准使用。
 
 ### 1、branch
 
