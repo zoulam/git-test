@@ -270,7 +270,7 @@ git rm -r -f --cached **/node_modules/ # -r就是remote的意思-f是force的意
 
 ## 建议
 
-标注有**（本地）**命令含义：表示建议不要修改已经更新到remote的信息
+标注有**本地**命令含义：表示建议不要修改已经更新到remote的信息
 
 ![concept](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/git-command.jpg)
 
@@ -439,7 +439,7 @@ console.log("hello, little man!")
 
 ## config
 
->  在上面**(初始本地配置)**中已经演示过如何设置邮箱和用户名了，下面演示常见命令。
+>  在上面**初始本地配置**中已经演示过如何设置邮箱和用户名了，下面演示常见命令。
 
 ```bash
 git config --list # 查看配置列表
@@ -528,7 +528,7 @@ git blame <filename> # 列表展示指定文件的变化
 
 ## merge
 
->  合并分支的命令，**通常会有冲突:**需要手动根据冲突情况解决问题
+>  合并分支的命令，**通常会有冲突**:需要手动根据冲突情况解决问题
 
 ```bash
 # 首先进入main分支（如果已经在了就不用切换）
@@ -610,7 +610,7 @@ pull 命令也可以使用变基
 
 ### 2、merge commit message
 
->  合并信息的限制：本次示例中的`git log`只有**5**条，所以合并的条数最大是**\(5-1\)**条即**4**条
+>  合并信息的限制：本次示例中的`git log`只有**5**条，所以合并的条数最大是**5-1**条即**4**条
 
 ​		使用场景：糊涂的程序员fix一个bug，一次`commit`没有完成，提交了10次 `commit`才完成，但是这10次`commit`仅仅做了这一件事，那么我们就可以将这10次`commit`合并为1次`commit`。
 
@@ -624,7 +624,7 @@ pull 命令也可以使用变基
 
 ```bash
 # 合并最近四次commit信息,进入vim编辑器
-$ git rebase -i HEAD~4 # 合并四条commit信息
+git rebase -i HEAD~4 # 合并四条commit信息
 ```
 
 ```bash
@@ -638,7 +638,7 @@ s f70b17d 第五次提交
 
 ```bash
 # 进入vim编辑器,编辑commit id 内的所有子commit信息(不包含他本身)
-$ git rebase -i [commit id]
+git rebase -i [commit id]
 ```
 
 #### 其他
@@ -662,10 +662,10 @@ $ git rebase -i [commit id]
 
 ```bash
 # （重新回到）到rebase文件编辑
-$ git rebase --edit-todo
+git rebase --edit-todo
 
 # 保存rebase文件
-$ git rebase --continue
+git rebase --continue
 ```
 
 # 常见操作
@@ -674,7 +674,7 @@ $ git rebase --continue
 
 >  `amend`中文释义：修改；改善。
 >
-> ​	**适用场景:**上一次commit的内容实际未完成
+> ​	**适用场景**:上一次commit的内容实际未完成
 >
 > 使用方式：
 >
@@ -741,7 +741,7 @@ git stash drop stash@{0} #删除列表1
 
 # 可视化工具
 
->  **注:**在使用git可视化工具之前还是得学会基本的命令行操作
+>  **注**:在使用git可视化工具之前还是得学会基本的命令行操作
 >
 > ​	1、可视化工具在服务器上无法使用
 >
@@ -767,25 +767,25 @@ git stash drop stash@{0} #删除列表1
 
 ```bash
 #远程仓库提交方式版本
-$ git remote -v
+git remote -v
 
  #移除原始提交方式
-$ git remote rm origin
+git remote rm origin
 
 #改用ssh
-$ git remote add origin [ 仓库地址]
+git remote add origin [ 仓库地址]
 
 #设置跟随master，并提交到远程仓库
-$ git push -u origin master
+git push -u origin master
 ```
 
 ## 2）`release`|`merge`进程未中断
 
 ```bash
 #中断rebase进程
-$ git rebase --abort
+git rebase --abort
 #中断merge进程
-$ git merge --abort
+git merge --abort
 ```
 
 ## 3）`git push`出现rejected错误
@@ -796,7 +796,7 @@ $ git merge --abort
 
 ```bash
 # 确定本地的代码没有问题，强制push
-$ git push -f
+git push -f
 ```
 
 **解决方式②**
@@ -804,24 +804,24 @@ $ git push -f
 ```bash
 # 确定远程仓库的代码没问题，拉取最新的内容再重写本地代码后git push
 # 这两个命令合起来等效git pull
-$ git fetch
+git fetch
 
-$ git merge
+git merge
 ```
 
 ```bash
 # 获取远程仓库的更新
-$ git pull
+git pull
 ```
 
 ## 4）关于中文乱码问题
 
 ```bash
-$ git config --global core.quotepath false          # 显示 status 编码
-$ git config --global gui.encoding utf-8            # 图形界面编码
-$ git config --global i18n.commit.encoding utf-8    # 提交信息编码
-$ git config --global i18n.logoutputencoding utf-8    # 输出 log 编码
-$ export LESSCHARSET=utf-8
+git config --global core.quotepath false          # 显示 status 编码
+git config --global gui.encoding utf-8            # 图形界面编码
+git config --global i18n.commit.encoding utf-8    # 提交信息编码
+git config --global i18n.logoutputencoding utf-8    # 输出 log 编码
+export LESSCHARSET=utf-8
 # 最后一条命令是因为 git log 默认使用 less 分页，所以需要 bash 对 less 命令进行 utf-8 编码
 ```
 
@@ -856,7 +856,7 @@ git update # 2.17.1版本的更新命令
 git update-git-for-windows #  2.17.1版本之后的更新git的Windows命令
 ```
 
->  **注:**如果上述命令不存在，去git官网下载最新本覆盖安装。
+>  **注**:如果上述命令不存在，去git官网下载最新本覆盖安装。
 
 ## 8）Submodule 和 Subtree区别和使用
 
