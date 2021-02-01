@@ -347,7 +347,9 @@ git config --global -e # 修改全局参数
 
 ## checkout（查看源码的神器）
 
->  通常被翻译为签出，可以形象的理解为从盒子里取出卡片的动作。
+>  通常被翻译为签出，可以形象的理解为从盒子里取出卡片的动作，移动了游标，使用变基可以回到主分支。
+>
+>  ​	![checkout](https://zoulam-pic-repo.oss-cn-beijing.aliyuncs.com/img/image-20210201212913704.png)
 
 ```bash
 git checkout <branch name> # 切换分支
