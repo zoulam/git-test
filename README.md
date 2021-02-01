@@ -280,6 +280,10 @@ git push -f # 确定本地没有错误，慎用，坚定的（force）推送上�
 ```bash
 git pull # 会自动合并代码
 git push
+
+# 下面两个命令等效 git pull
+git fetch # 拉取但是不合并
+git merge # 修改完冲突之后合并
 ```
 
 #### 方式3
@@ -322,15 +326,8 @@ console.log("hello, little man!")
 
 ```bash
 1、修改冲突文件
-2、发起merge commit
+2、git add . && git commit
 3、push
-```
-
-## 方式4
-
-```bash
-git fetch # 拉取但是不合并
-git merge # 修改完冲突之后合并
 ```
 
 ## config
