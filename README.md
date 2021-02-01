@@ -476,6 +476,8 @@ git shortlog -sn# sort num,查看提交人并以提交次数排序
 git remote branch # 查看远程（仓库）分支
 ```
 
+# 变基
+
 ## rebase
 
 >  万恶的变基，re变base基础，变更根基。
@@ -484,7 +486,9 @@ git remote branch # 查看远程（仓库）分支
 
 与 `merge`合并分支的方式不同，rebase合并的方式会删除被合并 `branch`的历史
 
-```
+​	可视化操作命令是 `Rebase  branch1 onto branch2`
+
+```bash
 git rebase
 ```
 
