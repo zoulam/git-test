@@ -1,8 +1,64 @@
-
-
-[TOC]
-
-
+* [推荐文章](#推荐文章)
+* [什么是git](#什么是git)
+* [在此之前](#在此之前)
+* [git使用（入门）](#git使用入门)
+  * [①初始化本地配置](#初始化本地配置)
+  * [②通过 <a href="https://github\.com">github</a>初始仓库](#通过-github初始仓库)
+    * [方式1（推荐使用）](#方式1推荐使用)
+    * [方式2](#方式2)
+* [什么是GitHub](#什么是github)
+* [概念初识](#概念初识)
+  * [①文件的几个概念](#文件的几个概念)
+  * [②reflog](#reflog)
+  * [③branch&amp;tag](#branchtag)
+* [<strong>常见命令</strong>](#常见命令)
+  * [建议](#建议)
+  * [常见参数](#常见参数)
+  * [help](#help)
+  * [add](#add)
+  * [commit](#commit)
+    * [值得一提](#值得一提)
+    * [概念理解](#概念理解)
+  * [clone](#clone)
+  * [<strong>pull&amp;push</strong>](#pullpush)
+    * [出现冲突](#出现冲突)
+      * [方式1](#方式1)
+      * [方式2](#方式2-1)
+      * [方式3](#方式3)
+  * [config](#config)
+  * [checkout（查看源码的神器）](#checkout查看源码的神器)
+  * [<strong>status</strong>](#status)
+  * [diff](#diff)
+  * [mv &amp; rm](#mv--rm)
+  * [merge](#merge)
+  * [log&amp;reflog](#logreflog)
+    * [log可选参数](#log可选参数)
+  * [<strong>remote</strong>](#remote)
+* [变基（rebase）](#变基rebase)
+    * [1、branch](#1branch)
+    * [2、pull rebase](#2pull-rebase)
+    * [2、merge commit message](#2merge-commit-message)
+      * [方法1](#方法1)
+      * [方法2](#方法2)
+      * [其他](#其他)
+* [常见操作](#常见操作)
+  * [amend（本地）](#amend本地)
+* [撤销三连](#撤销三连)
+  * [undo&amp;redo(本地)](#undoredo本地)
+  * [revert](#revert)
+  * [reset（本地）](#reset本地)
+* [暂存内容](#暂存内容)
+  * [stash](#stash)
+* [可视化工具](#可视化工具)
+* [常见问题](#常见问题)
+  * [1）需要每一次的git push都需要输入账号密码](#1需要每一次的git-push都需要输入账号密码)
+  * [2）release|merge进程未中断](#2releasemerge进程未中断)
+  * [3）git push出现rejected错误](#3git-push出现rejected错误)
+  * [4）关于中文乱码问题](#4关于中文乱码问题)
+  * [5）ls打印中文目录是乱码](#5ls打印中文目录是乱码)
+  * [6）如何生成在GitHub可以使用的目录](#6如何生成在github可以使用的目录)
+  * [7）如何更新git客户端](#7如何更新git客户端)
+  * [8）Submodule 和 Subtree区别和使用](#8submodule-和-subtree区别和使用)
 
 # 推荐文章
 
@@ -10,7 +66,7 @@
 
 # 什么是git
 
-git是一个分布式版本控制（ **distributed version-control**）系统。 
+git是一个分布式版本控制（ **distributed version-control**）系统。
 
 ​	通常会被缩写成 `VSC` ： **version control system**
 
@@ -184,7 +240,7 @@ git checkout -b [branch] [tag]# 新建一个分支，指向某个tag
 
 `.git`：文件夹，是一个默认为隐藏文件的文件夹，用于保存git信息。
 
-`README.md`:在GitHub中会被默认渲染成页面的指定文件名的 md文件 
+`README.md`:在GitHub中会被默认渲染成页面的指定文件名的 md文件
 
 ​		[github提供的README.md文档](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes)
 
@@ -455,7 +511,7 @@ git blame <filename> # 列表展示指定文件的变化
 > 下方代码的含义是（+）添加了`xx`，（-）删除了`aa`
 
 ```diff
-+ xx 
++ xx
 - aa
 ```
 
@@ -711,7 +767,7 @@ git stash drop stash@{0} #删除列表1
 
 ```bash
 #远程仓库提交方式版本
-$ git remote -v 
+$ git remote -v
 
  #移除原始提交方式
 $ git remote rm origin
@@ -779,7 +835,18 @@ alias ls="ls --show-control-chars --color"
 
 ## 6）如何生成在GitHub可以使用的目录
 
-知乎问题：[如何实现Github markdown 目录/页内跳转？](https://www.zhihu.com/question/58630229)
+[gh-md-toc二进制文件下载](https://github.com/ekalinin/github-markdown-toc.go/releases)
+
+1、下载这个gh-md-toc.windows.386.tgz
+
+2、解压出来，并添加文件后缀 `.exe`
+
+```bash
+./gh-md-toc.exe <filename> # 生成目录
+.\gh-md-toc README.md
+```
+
+> **tips:** 你可以更优雅的将该程序添加到你的环境变量中，并且用简短的命名。
 
 ## 7）如何更新git客户端
 
