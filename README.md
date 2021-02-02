@@ -104,7 +104,7 @@ ssh-keygen -t rsa -C "zoulam19981205@163.com"
 
 ②将生成的sshkey粘贴到GitHub账户上（**此步是保证你的电脑自由使用ssh对该账户的仓库操作**）
 
-`setting` -> `SSH GPG keys` -> `new SSH key`-> 粘贴上一步保存的sshkey并填写key名称
+`setting` -> `SSH GPG keys` -> `new SSH key`-> 粘贴上一步保存在`id_rsa.pub`文件的公钥并填写key名称
 
 
 ## ②通过 [github](https://github.com)初始仓库
