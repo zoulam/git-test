@@ -332,7 +332,7 @@ git commit # 输入多行的commit信息
 
 ### 值得一提
 
-> ​	commit信息是可以触发GitHub某些行为的， **如:** 创建跳转到指定 `issue`的`commit`信息。
+> ​	commit信息是可以触发GitHub某些行为的， **如:** 创建(`#<issue-number>`)跳转到指定 `issue`的`commit`信息。
 >
 > ​		[commitevent的官方文档](https://docs.github.com/cn/developers/webhooks-and-events/github-event-types#commitcommentevent)你可以自行查阅，查找你需要的功能。
 
@@ -857,6 +857,8 @@ git update-git-for-windows #  2.17.1版本之后的更新git的Windows命令
 ```
 
 >  **注**:如果上述命令不存在，去git官网下载最新本覆盖安装。
+>
+>  ​	更新的日志文件 `file:///<path>/Git/ReleaseNotes.html`
 
 ## 8）Submodule 和 Subtree区别和使用
 
